@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reuseable helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Journal Entry Validation
+    function isValidJournalEntry(data) {
+      return data.keys().hasAll(['title', 'notes', 'tags', 'imageUrls', 'userId', 'createdAt', 'updatedAt']) &&
+             data.keys().size() == 7 &&
+             data.title is string && data.title.size() <= 256 &&
+             data.notes is string && data.notes.size() <= 20000 &&
+             data.tags is list && data.tags.size() <= 20 &&
+             data.imageUrls is list && data.imageUrls.size() <= 10 &&
+             data.userId == request.auth.uid;
+    }
+
+    match /entries/{entryId} {
+      // 3. Path Variable Hardening
+      allow get, update, delete: if isValidId(entryId);
+      
+      // 8. Secure List Queries (The "Query Enforcer")
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      allow get: if isSignedIn() && resource.data.userId == request.auth.uid;
+
+      allow create: if isSignedIn() && 
+                      isValidJournalEntry(request.resource.data) &&
+                      request.resource.data.createdAt == request.time &&
+                      request.resource.data.updatedAt == request.time;
+
+      allow update: if isSignedIn() && 
+                      resource.data.userId == request.auth.uid &&
+                      isValidJournalEntry(request.resource.data) &&
+                      request.resource.data.userId == resource.data.userId &&
+                      request.resource.data.createdAt == resource.data.createdAt &&
+                      request.resource.data.updatedAt == request.time &&
+                      (
+                        // Action: Full Update
+                        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title', 'notes', 'tags', 'imageUrls', 'updatedAt'])
+                      );
+
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    // User profiles
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if isOwner(userId);
+    }
+  }
+}

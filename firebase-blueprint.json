@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "JournalEntry": {
+      "title": "Journal Entry",
+      "description": "A single entry in the user's knowledge journal.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The title of the entry." },
+        "notes": { "type": "string", "description": "The main content or notes of the entry." },
+        "tags": { "type": "array", "items": { "type": "string" }, "description": "A list of tags associated with the entry." },
+        "imageUrls": { "type": "array", "items": { "type": "string", "format": "uri" }, "description": "URLs of images attached to the entry." },
+        "userId": { "type": "string", "description": "The UID of the user who owns this entry." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The time the entry was created." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "The time the entry was last updated." }
+      },
+      "required": ["title", "userId", "createdAt"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Public profile information for the user.",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string", "format": "uri" },
+        "email": { "type": "string", "format": "email" }
+      }
+    }
+  },
+  "firestore": {
+    "/entries/{entryId}": {
+      "schema": "JournalEntry",
+      "description": "User journal entries."
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles."
+    }
+  }
+}
