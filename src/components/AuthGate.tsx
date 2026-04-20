@@ -41,10 +41,10 @@ export default function AuthGate({ children }: AuthGateProps) {
           className="vibrant-card border-vp-ink bg-white p-12 max-w-lg w-full text-center space-y-10"
         >
           <div className="space-y-6">
-            <h1 className="text-[50pt] font-black italic tracking-normal text-vp-ink leading-[1.1]">
+            <h1 className="text-[28pt] sm:text-[40pt] lg:text-[50pt] font-black italic tracking-normal text-vp-ink leading-[1.1] whitespace-nowrap overflow-hidden text-ellipsis">
               Knowledge Journal 💗
             </h1>
-            <p className="font-semibold text-[30pt] text-vp-ink opacity-70 leading-tight">
+            <p className="font-semibold text-lg sm:text-[24pt] lg:text-[30pt] text-vp-ink opacity-70 leading-tight">
               An infinite chamber of curiosities that transcends conventional norms of learning.
             </p>
           </div>

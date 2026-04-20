@@ -101,37 +101,15 @@ export default function App() {
 
   return (
     <AuthGate>
-      {/* Top right floating actions */}
-      <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
-        <div className="flex items-center gap-2 bg-white/80 backdrop-blur border-2 border-vp-ink px-4 py-1.5 rounded-full shadow-[2px_2px_0px_#000]">
-          <span className={cn(
-            "w-2 h-2 rounded-full",
-            loading ? "bg-vp-primary animate-pulse" : "bg-vp-accent2"
-          )} />
-          <span className="text-[10px] font-black uppercase tracking-widest text-vp-ink">
-            {loading ? 'SYNCING' : 'SYNCED'}
-          </span>
-        </div>
-
-        <button 
-          onClick={() => signOut(auth)}
-          className="vibrant-btn vibrant-btn-secondary !shadow-[2px_2px_0px_#000] !px-4 !py-2 !text-xs"
-          title="Sign Out"
-        >
-          <LogOut size={14} />
-          <span className="hidden sm:inline">SIGN OUT</span>
-        </button>
-      </div>
-
       <div className="flex flex-col lg:flex-row min-h-screen bg-vp-bg p-4 lg:p-10 gap-8">
         
         {/* Sidebar */}
-        <aside className="lg:w-[500px] flex flex-col gap-10 shrink-0">
+        <aside className="w-full lg:w-[500px] flex flex-col gap-10 shrink-0">
           <div className="flex flex-col gap-6">
-            <h1 className="text-[50pt] font-black italic tracking-normal text-vp-ink leading-[1.1] whitespace-nowrap">
+            <h1 className="text-[28pt] sm:text-[40pt] lg:text-[50pt] font-black italic tracking-normal text-vp-ink leading-[1.1] whitespace-nowrap overflow-hidden text-ellipsis">
               Knowledge Journal 💗
             </h1>
-            <p className="font-semibold text-[30pt] leading-tight text-vp-ink opacity-60">
+            <p className="font-semibold text-lg sm:text-[24pt] lg:text-[30pt] leading-tight text-vp-ink opacity-60">
               An infinite chamber of curiosities that transcends conventional norms of learning.
             </p>
             <button 
@@ -166,33 +144,6 @@ export default function App() {
               Tags
             </button>
           </nav>
-
-          <div className="mt-auto hidden lg:flex bg-white border-3 border-vp-ink p-6 rounded-[2rem] flex-col gap-5 shadow-[6px_6px_0px_var(--color-vp-secondary)]">
-            <p className="text-[11px] font-black uppercase opacity-40 tracking-widest">Connected Devices</p>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between text-sm font-black italic">
-                <div className="flex items-center gap-2">
-                  <Laptop size={14} />
-                  <span>MACBOOK PRO</span>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-vp-accent2 border border-black shadow-sm" />
-              </div>
-              <div className="flex items-center justify-between text-sm font-black italic">
-                <div className="flex items-center gap-2">
-                  <Smartphone size={14} />
-                  <span>IPHONE 15</span>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-vp-accent2 border border-black shadow-sm" />
-              </div>
-              <div className="flex items-center justify-between text-sm font-black italic">
-                <div className="flex items-center gap-2">
-                  <Tablet size={14} />
-                  <span>IPAD AIR</span>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-vp-accent2 border border-black shadow-sm" />
-              </div>
-            </div>
-          </div>
         </aside>
 
         {/* Main Content */}
@@ -212,7 +163,7 @@ export default function App() {
               <div className="absolute right-5 top-1/2 -translate-y-1/2 font-black text-xs opacity-20 hidden sm:block">⌘K</div>
             </div>
 
-            <div className="flex gap-4 w-full md:w-auto">
+            <div className="flex flex-wrap gap-4 w-full md:w-auto items-center justify-center md:justify-end">
               <div className="flex border-3 border-vp-ink rounded-2xl overflow-hidden shadow-[4px_4px_0px_#000]">
                 <button 
                   onClick={() => setSortField('createdAt')}
@@ -238,6 +189,25 @@ export default function App() {
 
               <button className="vibrant-btn vibrant-btn-secondary !p-4 !rounded-2xl" title="Export Data">
                 <Download size={20} />
+              </button>
+
+              <div className="flex items-center gap-2 bg-white border-3 border-vp-ink px-4 py-3 rounded-2xl shadow-[4px_4px_0px_#000]">
+                <span className={cn(
+                  "w-2.5 h-2.5 rounded-full border border-vp-ink",
+                  loading ? "bg-vp-primary animate-pulse" : "bg-vp-accent2"
+                )} />
+                <span className="text-[10px] font-black uppercase tracking-widest text-vp-ink">
+                  {loading ? 'SYNCING' : 'SYNCED'}
+                </span>
+              </div>
+
+              <button 
+                onClick={() => signOut(auth)}
+                className="vibrant-btn vibrant-btn-secondary !shadow-[4px_4px_0px_#000] !px-4 !py-3 !text-xs !rounded-2xl"
+                title="Sign Out"
+              >
+                <LogOut size={16} />
+                <span className="hidden xl:inline">SIGN OUT</span>
               </button>
             </div>
           </header>
