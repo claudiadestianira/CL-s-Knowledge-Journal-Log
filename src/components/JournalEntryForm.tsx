@@ -34,6 +34,16 @@ export default function JournalEntryForm({ entry, onSave, onClose }: JournalEntr
     setIsUploading(true);
     const files = Array.from(e.target.files) as File[];
     
+    // Size limit 5MB
+    const MAX_SIZE = 5 * 1024 * 1024;
+    const tooLarge = files.filter(f => f.size > MAX_SIZE);
+    if (tooLarge.length > 0) {
+      alert(`The following files are too large (Max 5MB): ${tooLarge.map(f => f.name).join(', ')}`);
+      setIsUploading(false);
+      e.target.value = '';
+      return;
+    }
+
     try {
       const uploadPromises = files.map(async (file) => {
         const storageRef = ref(storage, `journal-images/${Date.now()}_${file.name}`);
@@ -45,7 +55,7 @@ export default function JournalEntryForm({ entry, onSave, onClose }: JournalEntr
       setImageUrls((prev) => [...prev, ...urls]);
     } catch (error) {
       console.error("Upload failed", error);
-      alert("Image upload failed. Please try again.");
+      alert("Image upload failed. This could be due to network issues or Firebase Storage configuration.");
     } finally {
       setIsUploading(false);
       e.target.value = '';
@@ -90,7 +100,7 @@ export default function JournalEntryForm({ entry, onSave, onClose }: JournalEntr
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        className="relative vibrant-card !rounded-[3rem] border-vp-ink bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto p-10 space-y-8"
+        className="relative vibrant-card !rounded-[1.5rem] border-vp-ink bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto p-10 space-y-8"
       >
         <div className="flex justify-between items-center border-b-4 border-black pb-6">
           <h2 className="text-3xl font-black italic tracking-tighter text-vp-ink">

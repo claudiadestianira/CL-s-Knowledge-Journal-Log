@@ -19,12 +19,12 @@
 
 @layer base {
   body {
-    @apply bg-vp-bg text-vp-ink font-sans;
+    @apply bg-vp-bg text-vp-ink font-sans text-[24pt];
   }
 }
 
 .vibrant-card {
-  @apply border-3 border-vp-ink shadow-[6px_6px_0px_var(--color-vp-primary)] rounded-[2.5rem] bg-white transition-all;
+  @apply border-3 border-vp-ink shadow-[6px_6px_0px_var(--color-vp-primary)] rounded-[1.5rem] bg-white transition-all;
 }
 
 .vibrant-btn {

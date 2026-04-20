@@ -106,10 +106,10 @@ export default function App() {
         {/* Sidebar */}
         <aside className="w-full lg:w-[500px] flex flex-col gap-10 shrink-0">
           <div className="flex flex-col gap-6">
-            <h1 className="text-[24pt] font-helvetica sm:font-pixel font-black italic tracking-normal text-vp-ink leading-[1.1] whitespace-nowrap overflow-hidden text-ellipsis">
+            <h1 className="text-[30pt] font-helvetica sm:font-pixel font-black italic tracking-normal text-vp-ink leading-[1.1] whitespace-nowrap overflow-hidden text-ellipsis">
               Knowledge Journal 💗
             </h1>
-            <p className="font-semibold text-[20pt] font-helvetica sm:font-sans leading-tight text-vp-ink opacity-60">
+            <p className="font-semibold text-[22pt] font-helvetica sm:font-sans leading-tight text-vp-ink opacity-60">
               An infinite chamber of curiosities that transcends conventional norms of learning.
             </p>
             <button 

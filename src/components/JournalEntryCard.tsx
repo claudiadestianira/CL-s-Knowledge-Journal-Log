@@ -46,7 +46,7 @@ export default function JournalEntryCard({ entry, onEdit, onDelete }: JournalEnt
     >
       {/* Delete Confirmation Overlay */}
       {showConfirmDelete && (
-        <div className="absolute inset-0 z-20 bg-white/95 rounded-[2.5rem] flex flex-col items-center justify-center p-8 text-center">
+        <div className="absolute inset-0 z-20 bg-white/95 rounded-[1.5rem] flex flex-col items-center justify-center p-8 text-center">
           <p className="font-black text-xl text-vp-ink mb-6 leading-tight italic">
             DELETE THIS ENTRY?<br/>THIS CANNOT BE UNDONE.
           </p>
@@ -69,7 +69,7 @@ export default function JournalEntryCard({ entry, onEdit, onDelete }: JournalEnt
 
       {/* Image Slider */}
       {images.length > 0 && (
-        <div className="relative aspect-square sm:aspect-video bg-gray-50 overflow-hidden border-b-3 border-vp-ink rounded-t-[2.5rem]">
+        <div className="relative aspect-square sm:aspect-video bg-gray-50 overflow-hidden border-b-3 border-vp-ink rounded-t-[1.5rem]">
           <motion.img
             key={currentImgIndex}
             initial={{ opacity: 0 }}
