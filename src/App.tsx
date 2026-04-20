@@ -106,10 +106,10 @@ export default function App() {
         {/* Sidebar */}
         <aside className="w-full lg:w-[500px] flex flex-col gap-10 shrink-0">
           <div className="flex flex-col gap-6">
-            <h1 className="text-[22pt] sm:text-[40pt] lg:text-[50pt] font-jakarta sm:font-pixel font-black italic tracking-normal text-vp-ink leading-[1.1] whitespace-nowrap overflow-hidden text-ellipsis">
+            <h1 className="text-[24pt] font-helvetica sm:font-pixel font-black italic tracking-normal text-vp-ink leading-[1.1] whitespace-nowrap overflow-hidden text-ellipsis">
               Knowledge Journal 💗
             </h1>
-            <p className="font-semibold text-base sm:text-[24pt] lg:text-[30pt] font-jakarta sm:font-sans leading-tight text-vp-ink opacity-60">
+            <p className="font-semibold text-[20pt] font-helvetica sm:font-sans leading-tight text-vp-ink opacity-60">
               An infinite chamber of curiosities that transcends conventional norms of learning.
             </p>
             <button 
@@ -154,10 +154,9 @@ export default function App() {
             <div className="relative flex-grow max-w-xl w-full">
               <input 
                 type="text" 
-                placeholder="SEARCH YOUR MIND..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="vibrant-input pl-14"
+                className="vibrant-input pl-16"
               />
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 opacity-30" size={24} />
               <div className="absolute right-5 top-1/2 -translate-y-1/2 font-black text-xs opacity-20 hidden sm:block">⌘K</div>

@@ -5,16 +5,16 @@
 @theme {
   --font-sans: "PixelPurl", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-pixel: "PixelPurl", cursive;
-  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
   
-  --color-vp-bg: #E4FDE1;
-  --color-vp-ink: #114B5F;
-  --color-vp-primary: #F45B69;
-  --color-vp-secondary: #456990;
-  --color-vp-accent1: #114B5F;
-  --color-vp-accent2: #456990;
-  --color-vp-accent3: #F45B69;
-  --color-vp-accent4: #6B2737;
+  --color-vp-bg: #FFDBE9;
+  --color-vp-ink: #4C1A57;
+  --color-vp-primary: #B80084;
+  --color-vp-secondary: #00E5E8;
+  --color-vp-accent1: #007C77;
+  --color-vp-accent2: #B80084;
+  --color-vp-accent3: #4C1A57;
+  --color-vp-accent4: #00E5E8;
 }
 
 @layer base {
