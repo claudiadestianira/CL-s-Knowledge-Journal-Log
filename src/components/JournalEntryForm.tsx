@@ -47,18 +47,22 @@ export default function JournalEntryForm({ entry, onSave, onClose }: JournalEntr
     try {
       const uploadPromises = files.map(async (file) => {
         const storageRef = ref(storage, `journal-images/${Date.now()}_${file.name}`);
+        console.log(`Starting upload for: ${file.name}`);
         const snapshot = await uploadBytes(storageRef, file);
-        return getDownloadURL(snapshot.ref);
+        const url = await getDownloadURL(snapshot.ref);
+        console.log(`Upload successful for: ${file.name}`);
+        return url;
       });
       
       const urls = await Promise.all(uploadPromises);
       setImageUrls((prev) => [...prev, ...urls]);
-    } catch (error) {
-      console.error("Upload failed", error);
-      alert("Image upload failed. This could be due to network issues or Firebase Storage configuration.");
+    } catch (error: any) {
+      console.error("Detailed upload error:", error);
+      const errorMessage = error?.code || error?.message || "Unknown error";
+      alert(`Image upload failed: ${errorMessage}\n\nPlease ensure Firebase Storage is enabled in your console and rules allow writes.`);
     } finally {
       setIsUploading(false);
-      e.target.value = '';
+      if (e.target) e.target.value = '';
     }
   };
 

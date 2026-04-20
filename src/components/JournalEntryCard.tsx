@@ -101,23 +101,23 @@ export default function JournalEntryCard({ entry, onEdit, onDelete }: JournalEnt
         </div>
       )}
 
-      <div className="p-8 space-y-4">
+      <div className="p-12 space-y-6">
         <div className="flex justify-between items-start">
-          <span className={cn("text-[11px] font-black uppercase tracking-widest", accentTextColor)}>
+          <span className={cn("text-[13px] font-black uppercase tracking-widest", accentTextColor)}>
             {dateStr} • {entry.tags[0] || 'GENERAL'}
           </span>
-          <div className="w-10 h-10 bg-vp-secondary border-2 border-vp-ink rounded-full flex items-center justify-center font-bold shadow-[2px_2px_0px_#000]">
+          <div className="w-12 h-12 bg-vp-secondary border-2 border-vp-ink rounded-full flex items-center justify-center font-bold shadow-[2px_2px_0px_#000]">
             {entry.title.charAt(0).toUpperCase()}
           </div>
         </div>
 
-        <h3 className="text-2xl font-black leading-tight text-vp-ink">
+        <h3 className="text-4xl font-black leading-tight text-vp-ink">
           {entry.title}
         </h3>
 
         <p className={cn(
-          "text-sm text-gray-700 leading-relaxed font-medium whitespace-pre-wrap overflow-hidden relative",
-          !isExpanded && "max-h-24"
+          "text-[20pt] text-gray-700 leading-relaxed font-medium whitespace-pre-wrap overflow-hidden relative",
+          !isExpanded && "max-h-32"
         )}>
           {entry.notes}
         </p>
@@ -140,19 +140,19 @@ export default function JournalEntryCard({ entry, onEdit, onDelete }: JournalEnt
         </div>
       </div>
 
-      <div className="px-8 pb-8 flex gap-3">
+      <div className="px-12 pb-12 pt-4 flex gap-6">
         <button 
           onClick={() => onEdit(entry)}
-          className="vibrant-btn !py-2 !px-4 !text-[10px] !shadow-[2px_2px_0px_#000]"
+          className="vibrant-btn !py-4 !px-8 !text-[12px] !shadow-[3px_3px_0px_#000]"
         >
-          <Edit3 size={12} />
+          <Edit3 size={16} />
           EDIT
         </button>
         <button 
           onClick={() => setShowConfirmDelete(true)}
-          className="vibrant-btn vibrant-btn-primary !bg-vp-accent3 !py-2 !px-4 !text-[10px] !shadow-[2px_2px_0px_#000]"
+          className="vibrant-btn vibrant-btn-primary !bg-vp-accent3 !py-4 !px-8 !text-[12px] !shadow-[3px_3px_0px_#000]"
         >
-          <Trash2 size={12} />
+          <Trash2 size={16} />
           DELETE
         </button>
       </div>
